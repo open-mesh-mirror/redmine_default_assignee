@@ -3,11 +3,11 @@ class DefaultAssigneeIssueHook < Redmine::Hook::ViewListener
     # only new users
     return if not context[:issue].id.nil?
 
+    context[:issue].assigned_to_id = 1071
+    return if context[:project].nil?
+
     project = context[:project]
-    if [2, 3, 6].include? project.id
-      # batman-adv developers
-      context[:issue].assigned_to_id = 1071
-    elsif [4, 5].include? project.id
+    if [4, 5].include? project.id
       # elektra
       context[:issue].assigned_to_id = 52
     end
